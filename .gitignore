@@ -4,3 +4,5 @@
 
 /.vs
 /nRulesProcessor/obj
+/nRulesProcessor/bin/Debug
+/packages
