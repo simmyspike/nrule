@@ -3,6 +3,6 @@
 ################################################################################
 
 /.vs
-/nRulesProcessor/obj
-/nRulesProcessor/bin/Debug
+/*/obj
+/*/bin/Debug
 /packages
