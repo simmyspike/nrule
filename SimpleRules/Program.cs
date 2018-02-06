@@ -21,13 +21,20 @@ namespace NRules.Samples.SimpleRules
 
             //Load domain model
             var ToWinMarket = new Market("ToWin");
+            var Scoreboard = new Scoreboard();
 
             //Insert facts into rules engine's memory
             session.Insert(ToWinMarket);
+            session.Insert(Scoreboard);
 
             //Start match/resolve/act cycle
             //session.Update(ToWinMarket);
             session.Fire();
+
+            foreach (Participant part in ToWinMarket.Participants)
+            {
+                Console.WriteLine(part.Description + " - " + part.isWinner);
+            }
 
             Console.ReadLine();
         }

@@ -12,12 +12,26 @@ namespace NRules.Samples.SimpleRules.Rules
         public override void Define()
         {
             Market market = null;
+            Scoreboard scoreboard = null;
 
             When()
-                .Match<Market>(() => market, market.Name == "ToWin");
+                .Match<Market>(() => market, a => market.Name == "ToWin")
+                .Match<Scoreboard>(() => scoreboard);
 
             Then()
-                .Do(ctx => Console.WriteLine("hit"));
+                .Do(ctx => MarkUp(market, scoreboard));
+        }
+
+        private void MarkUp(Market market, Scoreboard scoreboard)
+        {
+            if(scoreboard.team1score > scoreboard.team2score)
+            {
+                market.Participants.Where(x => x.Description.Contains("Team 1")).All(x => x.isWinner = true);
+            }
+            else
+            {
+                market.Participants.Where(x => x.Description.Contains("Team 2")).All(x => x.isWinner = true);
+            }
         }
     }
 }
