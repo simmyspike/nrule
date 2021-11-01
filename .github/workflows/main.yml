@@ -46,4 +46,14 @@ jobs:
         run: |
           tree ${{ github.workspace }}
       
-      
+
+      - name: Upload a Build Artifact
+        uses: actions/upload-artifact@v2.2.4
+        with:
+          # Artifact name
+          #name: # optional, default is artifact
+          # A file, directory or wildcard pattern that describes what to upload
+          path: ${{ github.workspace }}\bin\release\
+          # The desired behavior if no files are found using the provided path
+
+          retention-days: 2
